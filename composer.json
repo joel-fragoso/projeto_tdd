@@ -13,6 +13,9 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
+    "require": {
+        "php": "^7.3"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },

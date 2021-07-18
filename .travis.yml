@@ -1,0 +1,30 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.3
+    - php: 7.4
+
+before-install:
+  - composer self-update
+
+install:
+  - composer install --prefer-source --no-interaction --dev
+
+script:
+  - composer cs-check
+  - composer test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: joelfragoso85@icloud.com
+
+env:
+  - CODECOV_TOKEN="$CODECOV_TOKEN"
