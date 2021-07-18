@@ -12,8 +12,9 @@
     "scripts": {
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
+        "serve": "php -S 0.0.0.0:8080 -t public/",
         "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+        "test-coverage": "phpunit --colors=always --coverage-clover coverage/clover.xml"
     },
     "require": {
         "php": "^7.3"
