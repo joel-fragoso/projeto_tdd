@@ -7,8 +7,8 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - php: 7.3
     - php: 7.4
+    - php: 8.0
 
 before-install:
   - composer self-update
