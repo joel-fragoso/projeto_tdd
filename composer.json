@@ -1,0 +1,55 @@
+{
+    "name": "joel-fragoso/projeto_tdd",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Joel Fragoso",
+            "email": "joelfragoso85@icloud.com"
+        }
+    ],
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "serve": "php -S 0.0.0.0:8080 -t public/",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover coverage/clover.xml"
+    },
+    "require": {
+        "php": "^7.3",
+        "ramsey/uuid": "^4.1"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "^2.3",
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App/",
+            "Category\\": "src/Category/",
+            "Order\\": "src/Order/",
+            "Product\\": "src/Product/",
+            "Role\\": "src/Role/",
+            "ShoppingCart\\": "src/ShoppingCart/",
+            "Tag\\": "src/Tag/",
+            "User\\": "src/User/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AppTest\\": "test/AppTest/",
+            "CategoryTest\\": "test/CategoryTest/",
+            "OrderTest\\": "test/OrderTest/",
+            "ProductTest\\": "test/ProductTest/",
+            "RoleTest\\": "test/RoleTest/",
+            "ShoppingCartTest\\": "test/ShoppingCartTest/",
+            "TagTest\\": "test/TagTest/",
+            "UserTest\\": "test/UserTest/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
