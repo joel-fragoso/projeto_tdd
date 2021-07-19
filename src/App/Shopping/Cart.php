@@ -5,17 +5,11 @@ declare(strict_types=1);
 namespace App\Shopping;
 
 use function array_push;
+use function count;
 
-/**
- * Class Cart
- *
- * @package App\Shopping
- */
 class Cart
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private array $products;
 
     /**
@@ -26,10 +20,6 @@ class Cart
         $this->products = [];
     }
 
-    /**
-     * @param Product $product
-     * @return Cart
-     */
     public function addProduct(Product $product): Cart
     {
         array_push($this->products, $product);
@@ -44,9 +34,6 @@ class Cart
         return $this->products;
     }
 
-    /**
-     * @return int
-     */
     public function getMajorPrice(): int
     {
         if (0 === count($this->getProducts())) {

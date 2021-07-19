@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Product\Handler;
 
+use Exception;
 use Product\Service\ProductsService;
 
-/**
- * Class HandlerAbstract
- *
- * @package Product\Handler
- */
-abstract class HandlerAbstract
+use function json_encode;
+
+use const JSON_PRETTY_PRINT;
+
+abstract class AbstractHandler
 {
-    /**
-     * @var ProductsService
-     */
     protected ProductsService $productsService;
 
     /**
-     * HandlerAbstract construct
+     * AbstractHandler construct
      *
      * @param ProdutsService $productsService
      */
@@ -31,7 +28,6 @@ abstract class HandlerAbstract
     /**
      * @param mixed $response
      * @param int $statusCode
-     * @return string
      */
     protected function successResponse($response, $statusCode = 200): string
     {
@@ -42,11 +38,9 @@ abstract class HandlerAbstract
     }
 
     /**
-     * @param \Exception $e
      * @param int $statusCode
-     * @return string
      */
-    protected function errorResponse(\Exception $e, $statusCode = 400): string
+    protected function errorResponse(Exception $e, $statusCode = 400): string
     {
         return json_encode([
             'type'                => 'error',

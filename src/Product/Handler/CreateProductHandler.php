@@ -4,19 +4,13 @@ declare(strict_types=1);
 
 namespace Product\Handler;
 
+use Exception;
 use Product\Entity\Product;
-use Product\Handler\HandlerAbstract;
 
-/**
- * Class CreateProductHandler
- *
- * @package Product\Handler
- */
-class CreateProductHandler extends HandlerAbstract
+class CreateProductHandler extends AbstractHandler
 {
     /**
      * @param array $request
-     * @return string
      */
     public function handle(array $request): string
     {
@@ -30,7 +24,7 @@ class CreateProductHandler extends HandlerAbstract
             $createProduct = $this->productsService->create($product);
 
             $response = $this->successResponse($createProduct);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $response = $this->errorResponse($e);
         }
 

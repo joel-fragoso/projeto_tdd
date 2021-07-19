@@ -4,25 +4,16 @@ declare(strict_types=1);
 
 namespace Product\Service;
 
+use Exception;
 use Product\Entity\Product;
 use Product\Repository\RepositoryInterface;
 
-/**
- * Class ServiceAbstract
- *
- * @package Product\Service
- */
-abstract class ServiceAbstract
+abstract class AbstractService
 {
-    /**
-     * @var RepositoryInterface
-     */
     protected RepositoryInterface $repository;
 
     /**
      * ServiceAbstract construct
-     *
-     * @param RepositoryInterface $repository
      */
     public function __construct(RepositoryInterface $repository)
     {
@@ -31,39 +22,32 @@ abstract class ServiceAbstract
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function findAll(): array
     {
         try {
-            $products = $this->repository->findAll();
-
-            return $products;
-        } catch (\Exception $e) {
+            return $this->repository->findAll();
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     /**
-     * @param string $id
-     * @return Product|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function findById(string $id): ?Product
     {
         try {
-            $product = $this->repository->findById($id);
-
-            return $product;
-        } catch (\Exception $e) {
+            return $this->repository->findById($id);
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     /**
      * @param array $product
-     * @return Product
-     * @throws \Exception
+     * @throws Exception
      */
     public function create(Product $product): Product
     {
@@ -71,7 +55,7 @@ abstract class ServiceAbstract
             $product = $this->repository->create($product);
 
             return $product;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }

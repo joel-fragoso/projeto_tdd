@@ -4,38 +4,34 @@ declare(strict_types=1);
 
 namespace Product\Repository;
 
+use Exception;
 use Product\Entity\Product;
 
 use function array_push;
 
-/**
- * Class ProductsRepository
- *
- * @package Product\Repository
- */
 class ProductsRepository implements RepositoryInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private array $products = [];
 
     /**
      * {@inheritdoc}
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function findAll(): array
     {
         try {
             return $this->products;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     /**
      * {@inheritdoc}
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function findById(string $id): ?Product
     {
@@ -47,14 +43,15 @@ class ProductsRepository implements RepositoryInterface
             }
 
             return null;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     /**
      * {@inheritdoc}
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function create(Product $product): Product
     {
@@ -62,7 +59,7 @@ class ProductsRepository implements RepositoryInterface
             array_push($this->products, $product);
 
             return $product;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
