@@ -17,7 +17,8 @@
         "test-coverage": "phpunit --colors=always --coverage-clover coverage/clover.xml"
     },
     "require": {
-        "php": "^7.3"
+        "php": "^7.3",
+        "ramsey/uuid": "^4.1"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "^2.3",
@@ -26,12 +27,26 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/"
+            "App\\": "src/App/",
+            "Category\\": "src/Category/",
+            "Order\\": "src/Order/",
+            "Product\\": "src/Product/",
+            "Role\\": "src/Role/",
+            "ShoppingCart\\": "src/ShoppingCart/",
+            "Tag\\": "src/Tag/",
+            "User\\": "src/User/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AppTest\\": "test/AppTest/"
+            "AppTest\\": "test/AppTest/",
+            "CategoryTest\\": "test/CategoryTest/",
+            "OrderTest\\": "test/OrderTest/",
+            "ProductTest\\": "test/ProductTest/",
+            "RoleTest\\": "test/RoleTest/",
+            "ShoppingCartTest\\": "test/ShoppingCartTest/",
+            "TagTest\\": "test/TagTest/",
+            "UserTest\\": "test/UserTest/"
         }
     },
     "config": {

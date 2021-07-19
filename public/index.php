@@ -9,20 +9,19 @@ error_reporting(E_ERROR);
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
 
-$product1 = (new \App\Entity\Product())
-    ->setName('Geladeira')
-    ->setPrice(450);
+use Product\Repository\ProductsRepository;
+use Product\Handler\CreateProductHandler;
+use Product\Service\ProductsService;
 
-$product2 = (new \App\Entity\Product())
-    ->setName('Liquidificador')
-    ->setPrice(250);
+$productsRepository = new ProductsRepository();
+$productsService = new ProductsService($productsRepository);
+$createProductHandler = new CreateProductHandler($productsService);
 
-$productsRepository = new \App\Repository\ProductsRepository();
+$product = $createProductHandler->handle([
+    'name'     => 'Geladeira',
+    'price'    => 450,
+    'quantity' => 1,
+    'active'   => true,
+]);
 
-$productsRepository->create($product1);
-$productsRepository->create($product2);
-
-$products = $productsRepository->findAll();
-
-var_dump($products);
-
+var_dump($product);
