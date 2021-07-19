@@ -9,14 +9,8 @@ use App\Shopping\Handler\MajorAndMinorProductPriceHandler;
 use App\Shopping\Product;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class MajorAndMinorProductValueHandlerTest
- */
-class MajorAndMinorProductValueHandlerTest extends TestCase
+class MajorAndMinorProductPriceHandlerTest extends TestCase
 {
-    /**
-     * @var Cart
-     */
     private Cart $cart;
 
     /**
@@ -26,7 +20,7 @@ class MajorAndMinorProductValueHandlerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->cart = new Cart();
+        $this->cart          = new Cart();
         $this->majorAndMinor = new MajorAndMinorProductPriceHandler();
     }
 
@@ -36,8 +30,8 @@ class MajorAndMinorProductValueHandlerTest extends TestCase
 
         $this->majorAndMinor->find($this->cart);
 
-        $this->assertInstanceOf('App\Shopping\Product', $this->majorAndMinor->getMinor());
-        $this->assertInstanceOf('App\Shopping\Product', $this->majorAndMinor->getMajor());
+        $this->assertInstanceOf(Product::class, $this->majorAndMinor->getMinor());
+        $this->assertInstanceOf(Product::class, $this->majorAndMinor->getMajor());
     }
 
     public function testShouldBeAbleToReturnsTheManjorAndMinorProductsInDescendingOrder()

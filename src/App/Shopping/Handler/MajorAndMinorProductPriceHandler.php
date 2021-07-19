@@ -7,26 +7,12 @@ namespace App\Shopping\Handler;
 use App\Shopping\Cart;
 use App\Shopping\Product;
 
-/**
- * Class MajorAndMinorProductPriceHandler
- *
- * @package App\Shopping\Handler
- */
 class MajorAndMinorProductPriceHandler
 {
-    /**
-     * @var Product
-     */
     private Product $minor;
 
-    /**
-     * @var Product
-     */
     private Product $major;
 
-    /**
-     * @param Cart $cart
-     */
     public function find(Cart $cart)
     {
         foreach ($cart->getProducts() as $product) {
@@ -40,17 +26,11 @@ class MajorAndMinorProductPriceHandler
         }
     }
 
-    /**
-     * @return Product
-     */
     public function getMinor(): Product
     {
         return $this->minor;
     }
 
-    /**
-     * @return Product
-     */
     public function getMajor(): Product
     {
         return $this->major;
