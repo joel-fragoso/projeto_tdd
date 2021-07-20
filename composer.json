@@ -13,8 +13,8 @@
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "serve": "php -S 0.0.0.0:8080 -t public/",
-        "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-html coverage"
+        "test": "phpunit --testdox --colors=always",
+        "test-coverage": "phpunit --testdox --colors=always --coverage-clover coverage/clover.xml --coverage-html coverage"
     },
     "require": {
         "php": "^7.4",
