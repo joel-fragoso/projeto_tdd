@@ -5,17 +5,11 @@ declare(strict_types=1);
 namespace App\Utils\Handler;
 
 use function array_key_exists;
+use function strlen;
 
-/**
- * Class ConvertRomanNumeralsToIntegerHandler
- *
- * @package App\Utils\Handler
- */
 class ConvertRomanNumeralsToIntegerHandler
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private array $romanNumeralsData = [
         'I' => 1,
         'V' => 5,
@@ -26,17 +20,13 @@ class ConvertRomanNumeralsToIntegerHandler
         'M' => 1000,
     ];
 
-    /**
-     * @param string $romanNumerals
-     * @return int
-     */
     public function convert(string $romanNumerals): int
     {
-        $accumulator = 0;
+        $accumulator            = 0;
         $lastNeighborOnTheRight = 0;
 
         for ($i = strlen($romanNumerals) - 1; $i >= 0; $i--) {
-            $current = 0;
+            $current       = 0;
             $currentNumber = $romanNumerals[$i];
 
             if (array_key_exists($currentNumber, $this->romanNumeralsData)) {
@@ -49,7 +39,7 @@ class ConvertRomanNumeralsToIntegerHandler
                 $multiplier = -1;
             }
 
-            $accumulator += ($current * $multiplier);
+            $accumulator += $current * $multiplier;
 
             $lastNeighborOnTheRight = $current;
         }

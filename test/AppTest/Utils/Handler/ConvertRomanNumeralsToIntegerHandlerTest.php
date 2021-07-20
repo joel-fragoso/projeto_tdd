@@ -7,11 +7,6 @@ namespace AppTest\Utils\Handler;
 use App\Utils\Handler\ConvertRomanNumeralsToIntegerHandler;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class ConvertRomanNumeralsToIntegerHandlerTest
- *
- * @package App\Utils\Handler
- */
 class ConvertRomanNumeralsToIntegerHandlerTest extends TestCase
 {
     private ConvertRomanNumeralsToIntegerHandler $convertRomanNumeralsToIntegerHandler;
