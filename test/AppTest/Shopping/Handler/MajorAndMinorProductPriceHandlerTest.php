@@ -9,13 +9,14 @@ use App\Shopping\Handler\MajorAndMinorProductPriceHandler;
 use App\Shopping\Product;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * MajorAndMinorProductPriceHandlerTest class
+ */
 class MajorAndMinorProductPriceHandlerTest extends TestCase
 {
     private Cart $cart;
 
-    /**
-     * private MajorAndMinorProductHandler
-     */
+    /** @var MajorAndMinorProductHandler */
     private MajorAndMinorProductPriceHandler $majorAndMinor;
 
     public function setUp(): void
