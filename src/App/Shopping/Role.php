@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shopping;
 
+use App\Shopping\Handler\CalculatorRuleAbstract;
 use App\Shopping\Handler\FifteenOrTwentyFivePorcentHandler;
 use App\Shopping\Handler\TenOrTwentyPorcentHandler;
 use Exception;
@@ -40,7 +41,7 @@ class Role
         }
     }
 
-    public function getRule()
+    public function getRule(): CalculatorRuleAbstract
     {
         return new $this->rule();
     }
