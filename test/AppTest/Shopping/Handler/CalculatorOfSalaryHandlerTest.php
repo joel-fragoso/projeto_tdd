@@ -18,7 +18,7 @@ class CalculatorOfSalaryHandlerTest extends TestCase
         $this->calculatorOfSalaryHandler = new CalculatorOfSalaryHandler();
     }
 
-    public function testShouldBeAbleToCalculateOfTheDeveloperSalaryWithLessThanTheLimit()
+    public function testShouldBeAbleToCalculateOfTheDeveloperSalaryWithUnderTheLimit()
     {
         $developer = new Employee('André', 1500, Role::DEVELOPER);
 
@@ -27,7 +27,7 @@ class CalculatorOfSalaryHandlerTest extends TestCase
         $this->assertEquals(1500 * 0.9, $salary);
     }
 
-    public function testShouldBeAbleToCalculateOfTheDeveloperSalaryWithMoreThanTheLimit()
+    public function testShouldBeAbleToCalculateOfTheDeveloperSalaryWithOverTheLimit()
     {
         $developer = new Employee('André', 4000, Role::DEVELOPER);
 
@@ -43,5 +43,23 @@ class CalculatorOfSalaryHandlerTest extends TestCase
         $salary = $this->calculatorOfSalaryHandler->calculate($developer);
 
         $this->assertEquals(500 * 0.85, $salary);
+    }
+
+    public function testShouldBeAbleToCalculateOfTheDBASalaryWithUnderTheLimit()
+    {
+        $dba = new Employee('Maurício', 1500, Role::DBA);
+
+        $salary = $this->calculatorOfSalaryHandler->calculate($dba);
+
+        $this->assertEquals(1500 * 0.85, $salary);
+    }
+
+    public function testShouldBeAbleToCalculateOfTheDBASalaryWithOverTheLimit()
+    {
+        $dba = new Employee('Maurício', 4500, Role::DBA);
+
+        $salary = $this->calculatorOfSalaryHandler->calculate($dba);
+
+        $this->assertEquals(4500 * 0.75, $salary);
     }
 }

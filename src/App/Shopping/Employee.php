@@ -10,9 +10,9 @@ class Employee
 
     private float $salary;
 
-    private int $role;
+    private string $role;
 
-    public function __construct(string $name, float $salary, int $role)
+    public function __construct(string $name, float $salary, string $role)
     {
         $this->name   = $name;
         $this->salary = $salary;
@@ -29,7 +29,7 @@ class Employee
         return $this->salary;
     }
 
-    public function getRole(): int
+    public function getRole(): string
     {
         return $this->role;
     }
