@@ -5,36 +5,42 @@ declare(strict_types=1);
 namespace App\Shopping\Handler;
 
 use App\Shopping\NotaFiscal;
-use App\Shopping\NotaFiscalDAO;
 use App\Shopping\Order;
-use App\Shopping\SAP;
-use DateTime;
 
 /**
  * GeneratorNotaFiscalHandler class
  */
 class GeneratorNotaFiscalHandler
 {
-    private NotaFiscalDAO $notaFiscalDAO;
+    private array $actions;
 
-    private SAP $sap;
+    private WatchHandlerInterface $watch;
 
-    public function __construct(NotaFiscalDAO $notaFiscalDAO, SAP $sap)
+    private TableHandlerInterface $table;
+
+    public function __construct(array $actions, WatchHandlerInterface $watch, TableHandlerInterface $table)
     {
-        $this->notaFiscalDAO = $notaFiscalDAO;
-        $this->sap           = $sap;
+        $this->actions = $actions;
+        $this->watch   = $watch;
+        $this->table   = $table;
     }
 
+    /**
+     * @return NotaFiscal
+     */
     public function generate(Order $order)
     {
+        $tableValue = $this->table->toValue($order->getTotalValue());
+        $totalValue = $order->getTotalValue() - ($order->getTotalValue() * $tableValue);
+
         $notaFiscal = new NotaFiscal(
             $order->getClient(),
-            $order->getTotalValue() * 0.94,
-            new DateTime()
+            $totalValue,
+            $this->watch->now()
         );
 
-        if (! $this->notaFiscalDAO->persist($notaFiscal) || ! $this->sap->send($notaFiscal)) {
-            return null;
+        foreach ($this->actions as $aciton) {
+            $aciton->execute($notaFiscal);
         }
 
         return $notaFiscal;
