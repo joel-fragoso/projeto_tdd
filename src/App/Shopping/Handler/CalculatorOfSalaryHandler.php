@@ -11,14 +11,8 @@ class CalculatorOfSalaryHandler
 {
     public function calculate(Employee $employee): float
     {
-        if (Role::DEVELOPER === $employee->getRole()) {
-            if (3000 < $employee->getSalary()) {
-                return $employee->getSalary() * 0.8;
-            }
+        $role = new Role($employee->getRole());
 
-            return $employee->getSalary() * 0.9;
-        }
-
-        return $employee->getSalary() * 0.85;
+        return $role->getRule()->calculate($employee);
     }
 }

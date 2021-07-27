@@ -7,6 +7,8 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
     <arg name="parallel" value="80"/>
+    <arg name="report" value="code"/>
+    <arg name="report-width" value="80"/>
 
     <!-- Show progress -->
     <arg value="p"/>
@@ -16,5 +18,5 @@
     <file>test</file>
 
     <!-- Include all rules from the Laminas Coding Standard -->
-    <rule ref="LaminasCodingStandard"/>
+    <rule ref="PSR12"/>
 </ruleset>
